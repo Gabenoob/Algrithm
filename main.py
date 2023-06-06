@@ -1,13 +1,14 @@
-import dynamicProgram as dp
+import numpy as np
+import graph
 import time
 
+import matplotlib.pyplot as plt
+
 if __name__ == "__main__":
-    height, egg = 200, 1000
+    x = graph.Board("largeG.txt")
     x1 = time.time()
-    dp.solution(height, egg)
+    print(x.check_bridge_new())
+    print(time.time()-x1)
     x2 = time.time()
-    print(x2-x1)
-    x1 = time.time()
-    dp.solution_devide(height, egg)
-    x2 = time.time()
-    print(x2-x1)
+    print(x.check_bridge())
+    print(time.time()-x2)
