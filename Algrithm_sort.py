@@ -91,30 +91,30 @@ class SortMethod:
 def count_avg_time(n):
     time_list = [[] for i in range(5)]
     method = SortMethod()
-    for i in range(20):
+    for i in range(1):
         x = list(range(n))
         random.shuffle(x)
-        t = time.time()
-        method.select_sort(x)
-        time_list[0].append(time.time() - t)
-        t = time.time()
-        method.bubble_sort(x)
-        time_list[1].append(time.time() - t)
+        # t = time.time()
+        # method.select_sort(x)
+        # time_list[0].append(time.time() - t)
+        # t = time.time()
+        # method.bubble_sort(x)
+        # time_list[1].append(time.time() - t)
         t = time.time()
         method.merge_sort(x)
         time_list[2].append(time.time() - t)
-        t = time.time()
-        method.quick_sort(x)
-        time_list[3].append(time.time() - t)
-        t = time.time()
-        method.insert_sort(x)
-        time_list[4].append(time.time() - t)
-    return [sum(time_list[i])/20 for i in range(5)]
+        # t = time.time()
+        # method.quick_sort(x)
+        # time_list[3].append(time.time() - t)
+        # t = time.time()
+        # method.insert_sort(x)
+        # time_list[4].append(time.time() - t)
+    return [sum(time_list[i])/1 for i in range(5)]
 
 
 def Algrithm_Test():
     tic = time.time()
-    li = count_avg_time(5000)
+    li = count_avg_time(200000)
     print(li)
     toc = time.time()
     print(toc - tic)
