@@ -11,7 +11,7 @@ class UnionFind:
             temp = self.parent[temp]
         return temp
 
-    def union(self, x, y,depth):
+    def union(self, x, y, depth):
         rootX = self.find(x)
         rootY = self.find(y)
         if rootX == rootY:
@@ -80,7 +80,7 @@ class Board:
         ori_UF = UnionFind(self.vertices)
         # BFS建树
         Tree = list(range(self.vertices))
-        depth = [0]*self.vertices
+        depth = [0] * self.vertices
         track = set()
         untrack = set(range(self.vertices))
         queue = []
@@ -98,17 +98,20 @@ class Board:
                 if (i not in track) & (i != temp):
                     queue.append(i)
                     Tree[i] = temp
-                    ori_UF.union(i, temp,depth)
+                    ori_UF.union(i, temp, depth)
             k += 1
         ori_UF.renew()
         new_UF = UnionFind(self.vertices)
+        x = 0
         for i in range(self.edge):
             u, v = self.edges[i][0], self.edges[i][1]
+            # x += 1
+            # print(x / self.edge)# 显示进度
             if Tree[v] == u or Tree[u] == v:
                 continue
             if new_UF.find(u) == new_UF.find(v):
                 continue
-            self.LCA(Tree, u, v, new_UF,depth)
+            self.LCA(Tree, u, v, new_UF, depth)
             new_UF.renew()
         count = 0
         for u, v in self.edges:
@@ -116,14 +119,14 @@ class Board:
                 count += 1
         return count
 
-    def LCA(self, Tree, u, v, UF,depth):
+    def LCA(self, Tree, u, v, UF, depth):
         while True:
-            if depth[u]>depth[v]:
-                UF.union(u,Tree[u],depth)
+            if depth[u] > depth[v]:
+                UF.union(u, Tree[u], depth)
                 u = Tree[u]
-            elif depth[u]<depth[v]:
-                UF.union(v, Tree[v],depth)
+            elif depth[u] < depth[v]:
+                UF.union(v, Tree[v], depth)
                 v = Tree[v]
             else:
-                UF.union(u,v,depth)
+                UF.union(u, v, depth)
                 break
